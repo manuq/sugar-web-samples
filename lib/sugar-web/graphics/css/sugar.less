@@ -1,5 +1,5 @@
 @toolbar-grey: #282828;
-@button-grey: #808080;
+@button-grey: #ccc;
 @panel-grey: #C0C0C0;
 @text-field-grey: #E5E5E5;
 
@@ -58,6 +58,11 @@ body {
   padding: 0 @toolbutton-size + (5 * @line-width);
   height: @toolbar-height;
   .unselectable;
+  position: absolute;
+  width: calc(100% - 114px);
+  width: calc(~"100%" - (2 * (@toolbutton-size + (5 * @line-width))));
+  box-shadow: 0 0 @subcell-size black;
+  z-index: 1;
 }
 
 /* Toolbar toolbutton */
@@ -103,6 +108,7 @@ body {
   top: @toolbar-height;
   overflow-y: auto;
   width: 100%;
+  z-index: 0;
 }
 
 /* Button */
@@ -312,6 +318,7 @@ label {
   background-color: transparent;
   position: absolute;
   pointer-events: none;
+  z-index: 2;
 }
 
 .palette-invoker {
@@ -323,6 +330,9 @@ label {
   background-position: @line-width @line-width;
   background-size: @toolbutton-size;
   background-repeat: no-repeat;
+  position: fixed;
+  z-index: 1;
+  border-radius: (@subcell-size / 2) (@subcell-size / 2) 0 0;
 }
 
 .palette-container {
@@ -332,6 +342,15 @@ label {
   border: @line-width solid @button-grey;
   min-width: 3 * @cell-size;
   pointer-events: auto;
+  box-shadow: 0 0 (3 * @subcell-size) black;
+  position: absolute;
+  top: @cell-size;
+  border-radius: 0 (@subcell-size / 2) (@subcell-size / 2) (@subcell-size / 2);
+}
+
+.palette-container p {
+  margin-top: 1.2em;
+  margin-left: @subcell-size;
 }
 
 .palette-invoker:before {
@@ -339,9 +358,9 @@ label {
   background-color: black;
   position: absolute;
   display: block;
-  top: @cell-size;
+  top: @cell-size - @line-width;
   width: @cell-size - 2 * @line-width;
-  left: @line-width;
+  left: 0;
   height: @line-width;
 }
 
